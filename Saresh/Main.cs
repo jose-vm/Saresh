@@ -211,6 +211,14 @@ namespace Saresh
                                                                                             }
                                                                                         }
                                                                                     }
+
+                                                                                    foreach (var entityData in entities)
+                                                                                    {
+                                                                                        if (entityData.Contains("id"))
+                                                                                        {
+                                                                                            Entity entity = new Entity(int.Parse(((NbtString)entityData["id"]).Value), requester.Level);
+                                                                                        }
+                                                                                    }
                                                                                     return true;
                                                                                 }
                                                                                 if (materials.Equals("Alpha"))
@@ -240,6 +248,19 @@ namespace Saresh
                                                                                                     Thread.Sleep(settings.BlockSetDelay);
                                                                                                 }
                                                                                             }
+                                                                                        }
+                                                                                    }
+
+                                                                                    foreach (var entityData in entities)
+                                                                                    {
+                                                                                        if (entityData.Contains("id"))
+                                                                                        {
+                                                                                            // I'll follow the MCPC Entity Chunk format
+                                                                                            // (http://minecraft.gamepedia.com/Chunk_format#Entity_Format)
+                                                                                            // Don't know if MCEdit exports it the same way
+                                                                                            // In schematics.
+                                                                                            // Hmm.
+                                                                                            Entity entity = new Entity(int.Parse(((NbtString)entityData["id"]).Value), requester.Level);
                                                                                         }
                                                                                     }
                                                                                     return true;

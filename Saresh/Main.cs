@@ -214,9 +214,9 @@ namespace Saresh
 
                                                                                     foreach (var entityData in entities)
                                                                                     {
-                                                                                        if (entityData.Contains("id"))
+                                                                                        if (entityData.Contains(EntityTags.TAG_TYPEID))
                                                                                         {
-                                                                                            Entity entity = new Entity(int.Parse(((NbtString)entityData["id"]).Value), requester.Level);
+                                                                                            Entity entity = new Entity(int.Parse(((NbtString)entityData[EntityTags.TAG_TYPEID]).Value), requester.Level);
                                                                                         }
                                                                                     }
                                                                                     return true;
@@ -253,14 +253,14 @@ namespace Saresh
 
                                                                                     foreach (var entityData in entities)
                                                                                     {
-                                                                                        if (entityData.Contains("id"))
+                                                                                        if (entityData.Contains(EntityTags.TAG_TYPEID))
                                                                                         {
                                                                                             // I'll follow the MCPC Entity Chunk format
                                                                                             // (http://minecraft.gamepedia.com/Chunk_format#Entity_Format)
                                                                                             // Don't know if MCEdit exports it the same way
                                                                                             // In schematics.
                                                                                             // Hmm.
-                                                                                            Entity entity = new Entity(int.Parse(((NbtString)entityData["id"]).Value), requester.Level);
+                                                                                            Entity entity = new Entity(int.Parse(((NbtString)entityData[EntityTags.TAG_TYPEID]).Value), requester.Level);
                                                                                         }
                                                                                     }
                                                                                     return true;

@@ -56,6 +56,7 @@ namespace Saresh
         public void Schematic(Player sender, params string[] args)
         {
             string function = args[0].ToLower();
+            string filepath = args[1];
 
             if (string.IsNullOrEmpty(function))
             {
@@ -63,7 +64,10 @@ namespace Saresh
             }
             if (function.Equals("import"))
             {
-                
+                if (!string.IsNullOrEmpty(filepath))
+                {
+                    ImportSchematic(sender, sender.Level, filepath);
+                }
             }
             if (function.Equals("export"))
             {
@@ -214,9 +218,9 @@ namespace Saresh
 
                                                                                     foreach (var entityData in entities)
                                                                                     {
-                                                                                        if (entityData.Contains(EntityTags.TAG_TYPEID))
+                                                                                        if (entityData.Contains(NbtTags.TAG_ENTITYTYPEID))
                                                                                         {
-                                                                                            Entity entity = new Entity(int.Parse(((NbtString)entityData[EntityTags.TAG_TYPEID]).Value), requester.Level);
+                                                                                            Entity entity = new Entity(int.Parse(((NbtString)entityData[NbtTags.TAG_ENTITYTYPEID]).Value), requester.Level);
                                                                                         }
                                                                                     }
                                                                                     return true;
@@ -253,14 +257,14 @@ namespace Saresh
 
                                                                                     foreach (var entityData in entities)
                                                                                     {
-                                                                                        if (entityData.Contains(EntityTags.TAG_TYPEID))
+                                                                                        if (entityData.Contains(NbtTags.TAG_ENTITYTYPEID))
                                                                                         {
                                                                                             // I'll follow the MCPC Entity Chunk format
                                                                                             // (http://minecraft.gamepedia.com/Chunk_format#Entity_Format)
                                                                                             // Don't know if MCEdit exports it the same way
                                                                                             // In schematics.
                                                                                             // Hmm.
-                                                                                            Entity entity = new Entity(int.Parse(((NbtString)entityData[EntityTags.TAG_TYPEID]).Value), requester.Level);
+                                                                                            Entity entity = new Entity(int.Parse(((NbtString)entityData[NbtTags.TAG_ENTITYTYPEID]).Value), requester.Level);
                                                                                         }
                                                                                     }
                                                                                     return true;
@@ -339,7 +343,9 @@ namespace Saresh
             if (schematic == null)
             {
                 Utils.WriteConsoleLine("Invalid schematic!");
+                requester.SendMessage("Invalid schematic!");
                 Utils.WriteConsoleLine("Cancelling schematic import...");
+                requester.SendMessage("Cancelling schematic import...");
                 return false;
             }
             return false;

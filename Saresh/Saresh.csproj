@@ -51,8 +51,8 @@
       <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.1.0.0\lib\net45\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MiNET, Version=1.0.962.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MiNET.1.0.962.0\lib\net46\MiNET.dll</HintPath>
+    <Reference Include="MiNET, Version=1.0.1014.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MiNET.1.0.1014\lib\net46\MiNET.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
